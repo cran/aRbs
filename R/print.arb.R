@@ -3,7 +3,7 @@
 #' An S3 method for printing objects of class \code{arb}. This will print the
 #' \code{best_choice} elements from
 #'
-#' Prints the the best choices of arbitrage opportunities, objects cn.
+#' Prints the the best choices of arbitrage opportunities.
 #'
 #' @param arb An object of class \code{arb} - usually the output of a call to
 #' \code{get_arbs()}
@@ -19,10 +19,10 @@ print.arb <- function(arb, ...) {
     cat("\nNo arbitrage opportunities found")
   } else {
 
+    cat(crayon::bold("\n------------------------------------------------------"))
     cat(crayon::bold("\nThe following arbitrage opportunities were found: \n"))
-    cat("------------------------------------------------------\n")
-    cat("------------------------------------------------------\n\n")
-    for (i in seq_along(arb)[-length(arb)]) {
+    cat(crayon::bold("------------------------------------------------------\n\n\n"))
+    for (i in seq_along(arb)) {
 
       arb[i][[1]]$best_choice$Stake <-
         arb[i][[1]]$best_choice$Stake %>%

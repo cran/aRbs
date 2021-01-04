@@ -3,7 +3,7 @@
 #' @details Used in the call to \code{get_arbs()} to find subdomains that
 #'  may offer events, from which we can find an arb.
 #'
-#' @param url A head domain URl, given as a string.
+#' @param url A head domain URL, given as a string.
 #'
 #' @return A \code{data.frame}.
 #'
