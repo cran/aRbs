@@ -1,4 +1,17 @@
+### Installing and Using `{aRbs}`.
+
+- To install the package from CRAN, run:
+`install.packages("aRbs")`
+
+- Then load the package:
+`library(aRbs)`
+
+- Finally, launch the shiny app:
+`get_arbs_shiny()`
+
 ### Disclaimer
+
+All content shown in the shiny app iframe comes directly from <oddschecker.com>. We are not responsible for any of the content shown here. 
 
 1. Gambling involves risk. Please only gamble with funds that you can afford to lose.
 

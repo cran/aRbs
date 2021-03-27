@@ -1,6 +1,6 @@
 Package: aRbs
 Title: Find Arbitrage Opportunities for Sports Matches
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     person("Andrew", "Little", 
             email = "andrewlittlebristol@gmail.com",
@@ -24,10 +24,9 @@ Imports: data.table, crayon, dplyr, progress, stringr, xml2, rvest,
         purrr, parallel, stats, shiny, shinydashboard, shinycssloaders
 Depends: R (>= 3.5.0)
 Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2021-01-04 09:52:36 UTC; alittle
+Packaged: 2021-03-27 21:43:16 UTC; alittle
 Author: Andrew Little [aut, cre]
 Repository: CRAN
-Date/Publication: 2021-01-04 11:30:12 UTC
+Date/Publication: 2021-03-27 21:50:07 UTC

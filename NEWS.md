@@ -3,6 +3,10 @@ title: "NEWS"
 output: html_document
 ---
 
+### Version 0.1.1
+- Fixed bug that broke `get_arbs_shiny`.
+- Shiny app has new button to open link in external tab.
+
 ### Version 0.1.0
 - Improved scraping code in `oddschecker2()` - almost a complete rewrite. Little resemblance now to the `oddschecker()` function from **{gambleR}**. 
 - Removed majority of cleaning in `get_arb_single()` as no longer necessary due to `oddschecker2()` changes. This results in a much faster implementation of `get_arb_single()` and in turn `get_arbs`.
@@ -18,4 +22,4 @@ output: html_document
 
 
 ### Version 0.0.1
-First release
+First release.

@@ -1,3 +1,5 @@
+`%>%` <- dplyr::`%>%`
+
 ui <- shinydashboard::dashboardPage(
   shinydashboard::dashboardHeader(title = "{aRbs}",
                                   titleWidth = "100%"),
@@ -6,19 +8,25 @@ ui <- shinydashboard::dashboardPage(
   ),
   shinydashboard::dashboardBody(
     shiny::fluidRow(
-      shiny::column(4,
+      shiny::column(3,
                     shiny::uiOutput("select_subdomain") %>%
                       shinycssloaders::withSpinner()
       ),
-      shiny::column(4,
-                    shiny::br(),
+      shiny::column(3,
+                    tags$head(
+                      tags$style(HTML('#get_arbs_button_btn{margin-top:27px}'))
+                    ),
                     shiny::uiOutput("get_arbs_ui") %>%
                       shinycssloaders::withSpinner()
       ),
-      shiny::column(4,
+      shiny::column(3,
                     shiny::uiOutput("select_arb_ui") %>%
                       shinycssloaders::withSpinner()
-      )),
+      ),
+      shiny::column(3,
+                    shiny::uiOutput("open_new_tab_ui") %>%
+                      shinycssloaders::withSpinner())
+      ),
     shiny::fluidRow(
       shiny::uiOutput("win_box"),
       shiny::br(),
@@ -32,7 +40,8 @@ ui <- shinydashboard::dashboardPage(
       shiny::column(width = 12,
                     shiny::uiOutput("web_page") %>%
                       shinycssloaders::withSpinner()
-      )
+      ),
+      shiny::br()
     )
   ), skin = "green"
 )
@@ -60,8 +69,14 @@ server <- function(input, output, session) {
 
   output$select_arb_ui <- shiny::renderUI({
     shiny::selectInput("select_arb", "Pick an arb",
-                choices = NULL, width = "100%")
+                       choices = NULL, width = "100%")
   })
+
+  output$open_new_tab_ui <- shiny::renderUI({
+    shiny::actionButton("open_new_tab_button", label = " Open in New Tab", width = "100%",
+                        icon = icon("external-link-alt"), style = 'margin-top:25px')
+  })
+
 
   output$best_choice <- DT::renderDT({
     DT::datatable(rv$arbs[[input$select_arb]]$best_choice,
@@ -102,13 +117,24 @@ server <- function(input, output, session) {
                      input$select_subdomain)
 
     output$web_page <- shiny::renderUI({
-      rv$website <- shiny::tags$iframe(
-        seamless = "seamless",
-        src = rv$src,
-        height = 600, width = 1230
-      )
+
+      # Create oddschecker embedded iframe
+      rv$website <-
+        shiny::tags$div(
+          shiny::tags$iframe(
+            seamless = NA,
+            #seamless = "seamless",
+            src = rv$src,
+            height = 1000,
+            # width = 1230
+            width = "100%"
+          )
+        )
+
+
     })
   })
+
 
   # "Find arbs" button pressed
   shiny::observeEvent(input$get_arbs_button_btn, {
@@ -125,7 +151,7 @@ server <- function(input, output, session) {
       style = "success",
       size = "small",
       block = TRUE,
-      disabled = rv$button_disabled
+      disabled = rv$button_disabled#, style = 'margin-top:25px'
     )
   })
 
@@ -143,13 +169,20 @@ server <- function(input, output, session) {
     )
 
     shiny::updateSelectInput(session, "select_arb",
-                      choices = names(rv$arbs))
+                             choices = names(rv$arbs))
   })
 
   # Changed arb
   shiny::observeEvent(input$select_arb, {
     rv$src <- paste0("https://www.oddschecker.com/",
                      rv$arbs[[input$select_arb]]$event)
+  })
+
+  # Spin up oddschecker in headless browser in the hope it fixes updating odds issue
+  observeEvent(input$open_new_tab_button, {
+
+    browseURL(rv$src)
+
   })
 
 }
