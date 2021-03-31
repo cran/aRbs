@@ -1,6 +1,6 @@
 Package: aRbs
 Title: Find Arbitrage Opportunities for Sports Matches
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: 
     person("Andrew", "Little", 
             email = "andrewlittlebristol@gmail.com",
@@ -21,12 +21,13 @@ Description: Money doesn't grow on trees. Arbitrage opportunities do.
     package README for full details.
 License: GPL-2
 Imports: data.table, crayon, dplyr, progress, stringr, xml2, rvest,
-        purrr, parallel, stats, shiny, shinydashboard, shinycssloaders
+        purrr, parallel, stats, shiny, shinydashboard, shinycssloaders,
+        DT, shinyBS
 Depends: R (>= 3.5.0)
 Encoding: UTF-8
 RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2021-03-27 21:43:16 UTC; alittle
+Packaged: 2021-03-29 20:08:02 UTC; alittle
 Author: Andrew Little [aut, cre]
 Repository: CRAN
-Date/Publication: 2021-03-27 21:50:07 UTC
+Date/Publication: 2021-03-31 16:30:08 UTC

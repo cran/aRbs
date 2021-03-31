@@ -1,50 +1,5 @@
 `%>%` <- dplyr::`%>%`
-
-ui <- shinydashboard::dashboardPage(
-  shinydashboard::dashboardHeader(title = "{aRbs}",
-                                  titleWidth = "100%"),
-  shinydashboard::dashboardSidebar(
-    width = "0px"
-  ),
-  shinydashboard::dashboardBody(
-    shiny::fluidRow(
-      shiny::column(3,
-                    shiny::uiOutput("select_subdomain") %>%
-                      shinycssloaders::withSpinner()
-      ),
-      shiny::column(3,
-                    tags$head(
-                      tags$style(HTML('#get_arbs_button_btn{margin-top:27px}'))
-                    ),
-                    shiny::uiOutput("get_arbs_ui") %>%
-                      shinycssloaders::withSpinner()
-      ),
-      shiny::column(3,
-                    shiny::uiOutput("select_arb_ui") %>%
-                      shinycssloaders::withSpinner()
-      ),
-      shiny::column(3,
-                    shiny::uiOutput("open_new_tab_ui") %>%
-                      shinycssloaders::withSpinner())
-      ),
-    shiny::fluidRow(
-      shiny::uiOutput("win_box"),
-      shiny::br(),
-      shiny::column(width = 12,
-                    DT::DTOutput("best_choice")
-      ),
-      shiny::br()
-    ),
-
-    shiny::fluidRow(
-      shiny::column(width = 12,
-                    shiny::uiOutput("web_page") %>%
-                      shinycssloaders::withSpinner()
-      ),
-      shiny::br()
-    )
-  ), skin = "green"
-)
+#' @keywords internal
 
 server <- function(input, output, session) {
 
@@ -57,7 +12,7 @@ server <- function(input, output, session) {
   # Find level one subdomains for arb select input
   # will be fixed for later versions...
   #subdomains <- level_one_subdomains()$subdomains
-  subdomains <- c("Football" = "football")
+  subdomains <- c("Football" = "football", "Tennis" = "tennis")
 
   # Create arb select input
   output$select_subdomain <- shiny::renderUI({
@@ -73,8 +28,10 @@ server <- function(input, output, session) {
   })
 
   output$open_new_tab_ui <- shiny::renderUI({
-    shiny::actionButton("open_new_tab_button", label = " Open in New Tab", width = "100%",
-                        icon = icon("external-link-alt"), style = 'margin-top:25px')
+    shiny::actionButton("open_new_tab_button",
+                        label = " Open in New Tab", #, href = rv$src, target = "_blank"),
+                        width = "100%",
+                        icon = shiny::icon("external-link-alt"), style = 'margin-top:25px')
   })
 
 
@@ -107,7 +64,7 @@ server <- function(input, output, session) {
 
   # Create oddschecker embedded iframe with source as
   # whichever arb is selected.
-  observeEvent(input$select_subdomain, {
+  shiny::observeEvent(input$select_subdomain, {
 
     rv$button_disabled <- FALSE
     rv$arbs_text <- " Find arbs"
@@ -178,13 +135,12 @@ server <- function(input, output, session) {
                      rv$arbs[[input$select_arb]]$event)
   })
 
-  # Spin up oddschecker in headless browser in the hope it fixes updating odds issue
-  observeEvent(input$open_new_tab_button, {
+  # Open new tab of current arb when button is pressed. Commented out and hyperlink in UI label
+  # used at the moment, as browseURL not allowed on shinyapps.io
+  shiny::observeEvent(input$open_new_tab_button, {
 
-    browseURL(rv$src)
+    utils::browseURL(rv$src)
 
   })
 
 }
-
-shiny::shinyApp(ui, server)
