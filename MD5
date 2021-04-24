@@ -1,13 +1,15 @@
-70a5b621f99287afabc3695c04e35cf9 *DESCRIPTION
+0666af1c027abaff8829f7791e2502fe *DESCRIPTION
 a95ca73c4833c52a365b21e0d4a43529 *NAMESPACE
-108eb57a53e8ee6c5c781b9adc63dacb *NEWS.md
+1a49e53a09d2c690e7279b724bd80253 *NEWS.md
 060ac783435b5c2e7ccd1cc8051595ff *R/aRbs.R
 ca6625db28276f0695df8b95f09cf532 *R/clean_links.R
 9f52d79d13157aa769deb154df3990ac *R/get_arb_single.R
-a89f57b6f8299261affe85f74cc6383a *R/get_arbs.R
+630e4cfb4703c264835f534248c929cc *R/get_arbs.R
 1893c52de3d24fd20647cb28790940d6 *R/get_arbs_shiny.R
+950d0e83078dc015084215ae348e23f7 *R/globals.R
 f375ab65f4dd99dfc53b70306a35db9f *R/implied_probability.R
 e2c368d69f6305499906b7065da65f62 *R/oddschecker2.R
+92ea9d254737e6913591a1c76cb7372e *R/plot_downloads.R
 dbb4e86f4fc10439a230e06777338b07 *R/print.arb.R
 2c123658281150ee82d3d4a329622cda *R/scrape_links.R
 e8ec97a1ce14d35c87402eb73f383fb1 *R/server.R
@@ -18,7 +20,7 @@ f6fdce555624aabb2c79be6915afb56f *README.md
 6f0062cd7618d3de7779512789a6c3ff *man/aRbs.Rd
 28606d79761a547e38c5281307e85bca *man/clean_links.Rd
 fbece2e131ebf608dbc649436c9d537a *man/get_arb_single.Rd
-2d41c77eced16d387dba81a15d0ea641 *man/get_arbs.Rd
+a14f15c18a398f61a72e9bfeae026958 *man/get_arbs.Rd
 7d19d897cb7abd1a0de67c28d1dc39a8 *man/get_arbs_shiny.Rd
 459b92e3757e181606dc567749c7acfc *man/oddschecker2.Rd
 f0beff970ae110b17d850a2f62596ce9 *man/print.arb.Rd
